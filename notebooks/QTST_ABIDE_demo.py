@@ -238,7 +238,7 @@ plt.tight_layout(); plt.savefig("abide_one_participant.png", dpi=300); plt.show(
 #
 # ### 4.1 One time point becomes one quantum circuit
 #
-# A linear layer turns the 200 regional values at time point *t* into rotation angles. The angles fill a fixed circuit layout ("circuit 14" of Sim, Johnson, & Aspuru-Guzik, 2019): single-qubit rotations about Y (`RY`) and controlled rotations about X (`CRX`) that link neighbouring qubits in a ring. With these angles the circuit is a unitary operation *U_t*: each time point becomes a quantum operation.
+# A linear layer turns the 200 regional values at time point *t* into rotation angles. The angles fill a fixed circuit layout ("circuit 14" of Sim, Johnson, & Aspuru-Guzik, 2019): single-qubit rotations about Y (`RY`) and controlled rotations about X (`CRX`) that link neighbouring qubits in a ring. With these angles the circuit is a unitary operation *U_t*: each time point becomes a quantum operation. The diagram below shows one layer of this circuit on the 8 qubits used in the experiments; each time point uses three layers.
 
 # %%
 def sim14_circuit(params, wires, layers=1):
@@ -263,8 +263,11 @@ def sim14_circuit(params, wires, layers=1):
             qml.CRX(take(), wires=[i, (i - 1) % wires])
 
 
-fig, ax = qml.draw_mpl(lambda p: sim14_circuit(p, wires=4, layers=1), decimals=None, style="pennylane")(torch.zeros(16))
-fig.savefig("qtst_circuit14_4qubits.png", dpi=300, bbox_inches="tight")
+# One layer of circuit 14 on the 8 qubits used in the experiments (each time point uses three such layers).
+fig, ax = qml.draw_mpl(lambda p: sim14_circuit(p, wires=N_QUBITS, layers=1), decimals=None, style="pennylane")(
+    torch.zeros(4 * N_QUBITS)
+)
+fig.savefig(f"qtst_circuit14_{N_QUBITS}qubits.png", dpi=300, bbox_inches="tight")
 plt.show()
 
 
