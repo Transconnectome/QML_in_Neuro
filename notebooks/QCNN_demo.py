@@ -180,15 +180,19 @@ def count_used_quantum_parameters(n_qubits: int, n_probes: int = 8) -> int:
 
 
 # %% [markdown]
-# Draw the circuit once (for 4 qubits). This is the picture used in the slides.
+# Draw the circuits used in the experiments: 4 qubits (MNIST) and 6 qubits (CIFAR-10). Each picture is also saved as a PNG file for the slides.
+#
+# Reading the diagrams: each horizontal line is a qubit. The `AngleEmbedding` block writes the input numbers into the qubits as rotation angles; the two-qubit blocks (`IsingXX`, `IsingYY`, `IsingZZ`, `U3`) are the convolution; a meter symbol followed by a controlled `U3` is the pooling step, after which the measured qubit is no longer used. The final meter is the prediction.
 
 # %%
-demo = QCNN(input_dim=4, n_qubits=4)
-fig, ax = qml.draw_mpl(demo.circuit, decimals=None, style="pennylane")(
-    torch.zeros(4), demo.conv_params.detach(), demo.pool_params.detach()
-)
-fig.savefig("qcnn_circuit_4qubits.png", dpi=300, bbox_inches="tight")
-plt.show()
+for n in (4, 6):
+    demo = QCNN(input_dim=n, n_qubits=n)
+    fig, ax = qml.draw_mpl(demo.circuit, decimals=None, style="pennylane")(
+        torch.zeros(n), demo.conv_params.detach(), demo.pool_params.detach()
+    )
+    fig.savefig(f"qcnn_circuit_{n}qubits.png", dpi=300, bbox_inches="tight")
+    print(f"QCNN circuit, {n} qubits ({'MNIST' if n == 4 else 'CIFAR-10'}) -> qcnn_circuit_{n}qubits.png")
+    plt.show()
 
 
 # %% [markdown]
