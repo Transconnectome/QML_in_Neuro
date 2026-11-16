@@ -1,0 +1,17 @@
+# Data are downloaded by the notebooks/scripts and are not redistributed here
+# (ABIDE: CC BY-NC-SA, download from the source; MNIST/CIFAR-10: torchvision).
+data/
+notebooks/data/
+notebooks/abide_data/
+
+# Local environment, logs, caches and checkpoints
+.venv/
+logs/
+logs_*.txt
+results_live/
+results_smoke/
+*_ckpt.pt
+*.tmp
+*.part
+__pycache__/
+.ipynb_checkpoints/

@@ -1,0 +1,15 @@
+{
+ "model": "quantum",
+ "seed": 2026,
+ "n_subjects": 100,
+ "seq_len": 116,
+ "qubits": 8,
+ "n_params": 19472,
+ "test_auroc": 0.5357142857142857,
+ "val_auroc_best": 0.4464285714285714,
+ "train_auroc": 0.7664473684210527,
+ "n_train": 70,
+ "n_val": 15,
+ "n_test": 15,
+ "seconds": 109.9
+}

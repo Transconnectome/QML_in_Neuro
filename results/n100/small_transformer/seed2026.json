@@ -1,0 +1,15 @@
+{
+ "model": "small_transformer",
+ "seed": 2026,
+ "n_subjects": 100,
+ "seq_len": 116,
+ "qubits": 8,
+ "n_params": 19647,
+ "test_auroc": 0.7857142857142857,
+ "val_auroc_best": 0.7142857142857143,
+ "train_auroc": 0.7771381578947368,
+ "n_train": 70,
+ "n_val": 15,
+ "n_test": 15,
+ "seconds": 1.0
+}

@@ -1,0 +1,16 @@
+{
+ "model": "fc_logreg",
+ "seed": 2026,
+ "n_subjects": 846,
+ "seq_len": 116,
+ "qubits": null,
+ "n_params": 19901,
+ "C": 0.001,
+ "test_auroc": 0.7988534396809572,
+ "val_auroc_best": 0.7558720639680161,
+ "train_auroc": 1.0,
+ "n_train": 592,
+ "n_val": 127,
+ "n_test": 127,
+ "seconds": null
+}
