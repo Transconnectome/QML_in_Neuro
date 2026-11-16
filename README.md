@@ -17,6 +17,7 @@ Both notebooks are self-contained: every line of code they use is inside them, a
 
 | Path | Content |
 | --- | --- |
+| `docs/QTSTransformer_Model_Description.md` | Step-by-step explanation of the quantum time-series transformer (temporal embedding, LCU mixing, QSVT polynomial, read-out) with the matching code |
 | `qtst/qts_transformer.py`, `qtst/baselines.py` | Quantum time-series transformer and parameter-matched classical models, unchanged from the Connectome Lab challenge `fmri-quantum-ts-transformer` |
 | `qtst/abide_data.py` | ABIDE loader: quality-checked participants, outcome coding, scan-length cropping with exclusion report, z-scoring, stratified splits |
 | `qtst/run_abide.py` | Training script with a checkpoint after every epoch (re-running resumes) |
