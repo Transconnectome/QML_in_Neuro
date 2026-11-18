@@ -1,6 +1,21 @@
 # Quantum Time-Series Transformer (PennyLane Implementation)
 This document describes the PyTorch and PennyLane implementation of the quantum time-series transformer developed by Park et al. (2025), as used in this repository (`qtst/qts_transformer.py`, and inline in `notebooks/QTST_ABIDE_demo.ipynb`). The quantum time-series transformer is based on the Quixer model architecture proposed by Khatri et al. (2024). This model is designed to process time-series data by leveraging quantum computing principles for embedding, mixing, and non-linear transformation of temporal features.
 
+![Architecture of the quantum time-series transformer](figures/QTSTransformer_architecture.png)
+
+**Figure.** Architecture of the quantum time-series transformer. The symbols map to the sections below:
+
+| Symbol | Meaning | Section |
+| --- | --- | --- |
+| $W_E$ | Classical projection that turns the features of each time point into circuit rotation angles | 1) Unitary Temporal Embedding |
+| $U_M$, $U_M^\dagger$ | Operation that applies the linear combination of the time-point unitaries, $M$ | 2) Time Sequence Mixing via LCU |
+| $\Pi_\phi$ | Phase rotations that, alternating with $U_M$ and $U_M^\dagger$, turn $M$ into the polynomial $P_c(M)$ | 3) Non-linearity via QSVT |
+| $U_{FF}$ | Trainable quantum feed-forward circuit | 4-1) Measurement QNode |
+| $\langle H \rangle$ | Expectation values of Pauli X, Y and Z on every qubit | 4-1) Measurement QNode |
+| $f_{OUT}$ | Final classical linear layer | 4-2) Execution and Classical Layer |
+
+The figure shows the circuit as it would run on quantum hardware, with ancilla qubits (top lines) for the linear combination and the polynomial. In the code, the linear combination and the polynomial are simulated directly on the state vector (sections 2 and 3).
+
 # Core Concepts
 The model's architecture can be broken down into four key stages:
 
